@@ -1,1 +1,74 @@
-
+const yargs = require('yargs/yargs');
+const {hideBin} = require('yargs/helpers');
+const argv = yargs(hideBin(process.argv));
+switch(process.argv[2]){
+    case 'current':
+        switch(process.argv[3]){
+            case '--year':
+                console.log((new Date).toISOString().split('T')[0].slice(0, 4));
+                break;
+            case '-y':
+                console.log((new Date).toISOString().split('T')[0].slice(0, 4));
+                break;
+            case '--month':
+                console.log((new Date).toISOString().split('T')[0].slice(5, 7));
+                break;
+            case '-m':
+                console.log((new Date).toISOString().split('T')[0].slice(5, 7));
+                break;
+            case '--date':
+                console.log((new Date).toISOString().split('T')[0].slice(8, 10));
+                break;
+            case '-d':
+                console.log((new Date).toISOString().split('T')[0].slice(8, 10));
+                break;
+            default:
+                console.log((new Date).toISOString().split('T')[0]);
+                break;
+        }
+        break;
+    case 'add':
+        switch (process.argv[3]) {
+            case '--year':
+                console.log(Number(((new Date).toISOString().split('T')[0].slice(0, 4))) + Number(process.argv[4]));
+                break;
+            case '-y':
+                console.log(Number(((new Date).toISOString().split('T')[0].slice(0, 4))) + Number(process.argv[4]));
+                break;
+            case '--month':
+                console.log(Number((((new Date).toISOString().split('T')[0].slice(5, 7))) + Number(process.argv[4])) % 12);
+                break;
+            case '-m':
+                console.log(Number((((new Date).toISOString().split('T')[0].slice(5, 7))) + Number(process.argv[4])) % 12);
+                break;
+            case '--date':
+                console.log(Number((((new Date).toISOString().split('T')[0].slice(8, 9))) + Number(process.argv[4])) % 31);
+                break;
+            case '-d':
+                console.log(Number((((new Date).toISOString().split('T')[0].slice(8, 9))) + Number(process.argv[4])) % 31);
+                break;
+        }
+        break;
+        case 'sub':
+            switch (process.argv[3]) {
+                case '--year':
+                    console.log(Number(((new Date).toISOString().split('T')[0].slice(0, 4))) - Number(process.argv[4]));
+                    break;
+                case '-y':
+                    console.log(Number(((new Date).toISOString().split('T')[0].slice(0, 4))) - Number(process.argv[4]));
+                    break;
+                case '--month':
+                    console.log(Number((((new Date).toISOString().split('T')[0].slice(5, 7))) - Number(process.argv[4])));
+                    break;
+                case '-m':
+                    console.log(Number((((new Date).toISOString().split('T')[0].slice(5, 7))) - Number(process.argv[4])));
+                    break;
+                case '--date':
+                    console.log(Number((((new Date).toISOString().split('T')[0].slice(8, 9))) - Number(process.argv[4])));
+                    break;
+                case '-d':
+                    console.log(Number((((new Date).toISOString().split('T')[0].slice(8, 9))) - Number(process.argv[4])));
+                    break;
+            }
+            break;
+}
